@@ -1,0 +1,94 @@
+div(ng-include='"components/navbar/navbar.html"')
+random-bg(path='../../assets/images')
+
+.container.main
+  h1 {{campaign.name}}
+  .row
+    .col-sm-12
+      mc-messages
+  .row
+    .col-md-12
+      button.btn.btn-link(ng-click='backToCampaignList()') Back to campains' list
+  .list-group
+    .list-group-item(ng-repeat='track in tracks')
+      div(ng-show='!track.isEdited')
+        .row
+          .col-sm-9
+            h4 {{track.mission.title}}
+          .col-sm-3.text-right
+            button.btn.btn-link(ng-click='track.isCollapsed = !track.isCollapsed')
+              h4.glyphicon.glyphicon-chevron-down(ng-show='track.isCollapsed')
+              h4.glyphicon.glyphicon-chevron-up(ng-show='!track.isCollapsed')
+        div(collapse='track.isCollapsed')
+          .row
+            .col-md-6
+              h4 Imperial statistics
+              p Influence: {{track.imperialStats.influence}}
+            .col-md-6
+              h4 Rebel statistics
+              p Credits: {{track.rebelStats.credits}}
+              div(ng-repeat='user in track.rebelStats.users')
+                .row
+                  .col-md-6
+                    span Name: {{user.name}}
+                  .col-md-6
+                    span Exp: {{user.exp}}
+            .col-md-12
+              h4 Global statistics
+              p Time spent: {{track.timeSpent.hours}}h {{track.timeSpent.minutes}}min
+              p Winner: {{track.winner}}
+      div(ng-show='track.isEdited')
+        form.form-horizontal(name='newTrackForm', ng-submit='newTrackForm.$valid && saveTrack(track)')
+          .form-group
+            label.col-md-3 Mission name
+            .col-md-9
+              selectize(config='missionsConfig', options='missions', ng-model='track.mission._id')
+              //select(ng-model='track.missionName', ng-options='("deck: " + mission.deckType + "; " + mission.title + "; type: " + mission.type) for mission in missions', class='form-control', required)
+              //input.form-control(type='text', ng-model='track.missionName', required)
+          .form-group
+            label.col-md-3 Imperial statistics (influencce)
+            .col-md-9
+              input.form-control(type='number', min='0', ng-model='track.imperialStats.influence', required)
+          .form-group
+            label.col-md-3 Rebel statistics (credits)
+            .col-md-9
+              input.form-control(type='number', min='0', ng-model='track.rebelStats.credits', required)
+          .form-group(ng-repeat='rebel in track.rebelStats.users')
+            label.col-md-3 Rebel player
+            .col-md-4
+              p.form-control-static(ng-model='rebel.name') {{rebel.hero}} ({{rebel.name}})
+            label.col-md-1 exp
+            .col-md-4
+              input.form-control(type='number', min='0', ng-model='rebel.exp', required)
+          .form-group
+            label.col-md-3 Available missions
+            .col-md-9
+              selectize(config='availableMissionsConfig', options='missions', ng-model='track.availableSideMissions')
+              //input.form-control(type='text', ng-model='track.availableSideMissions')
+          .form-group
+            label.col-md-3 Time spent
+            .col-md-3
+              .input-group
+                input.form-control(type='number', min='0', ng-model='track.timeSpent.hours', required)
+                .input-group-addon h
+            .col-md-3
+              .input-group
+                input.form-control(type='number', min='0', max='59', ng-model='track.timeSpent.minutes', required)
+                .input-group-addon min
+          .form-group
+            label.col-md-3 Winner
+            .col-md-9
+              selectize(config='winnersConfig', options='winners', ng-model='track.winner')
+              //select(ng-model='track.winner', ng-options='winner for winner in winners', class='form-control', required)
+          .form-group
+            input.btn.btn-primary(type='submit', value='Add mission')
+            input.btn.btn-primary(type='button', value='Cancel', ng-click='removeTrack(track, $index)')
+
+
+    .col-md-12(ng-show='canAdd')
+      button.btn.btn-link(ng-click='addTrack()')
+        span.glyphicon.glyphicon-plus
+
+
+
+div(ng-include='"components/static/footer.html"')

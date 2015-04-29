@@ -1,0 +1,20 @@
+.btn{
+  text-transform: uppercase;
+}
+.btn-xl {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size(1.25*$padding-large-vertical, 1.25*$padding-large-horizontal, 1.25*$font-size-large, 1.25*$line-height-large, 1.25*$border-radius-large);
+}
+.btn-xxl {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size(1.5*$padding-large-vertical, 1.5*$padding-large-horizontal, 1.5*$font-size-large, 1.5*$line-height-large, 1.5*$border-radius-large);
+}
+
+// Vertically space out multiple block buttons
+.btn-block.btn-xl + .btn-block {
+  margin-top: 25px;
+}
+
+.btn-inverse{
+  @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
+}

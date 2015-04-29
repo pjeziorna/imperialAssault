@@ -1,0 +1,33 @@
+div(ng-include='"components/navbar/navbar.html"')
+random-bg(path='../../assets/images')
+.container.main
+  .row
+    .col-sm-12
+      button.btn.btn-link(ng-click='backToMainPage()') Back to main page
+  .list-group
+    .list-group-item(ng-repeat='campaign in campaigns')
+      .row
+        .col-sm-9
+          h4 {{campaign.name}}
+        .col-sm-3.text-right
+          button.btn.btn-link(ng-show='campaign.canEdit', ng-click='editCampaign(campaign)')
+            h4.glyphicon.glyphicon-edit
+          button.btn.btn-link(ng-click='campaign.isCollapsed = !campaign.isCollapsed')
+            h4.glyphicon.glyphicon-chevron-down(ng-show='campaign.isCollapsed')
+            h4.glyphicon.glyphicon-chevron-up(ng-show='!campaign.isCollapsed')
+      div(collapse='campaign.isCollapsed')
+        .well
+          .row
+            .col-sm-12
+              span Imperial player: {{campaign.imperialPlayer.firstName}} {{campaign.imperialPlayer.lastName}}
+          .row
+            .col-md-4(ng-repeat='rebel in campaign.rebelPlayers')
+              span Rebel player: {{rebel.firstName}} {{rebel.lastName}}
+          .row
+            .col-sm-12
+              span Time spent: {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
+          .row
+            .col-sm-12
+              span Winner: {{campaign.winner}}
+
+div(ng-include='"components/static/footer.html"')

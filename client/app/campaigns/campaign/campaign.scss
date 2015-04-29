@@ -1,0 +1,33 @@
+.selectize-dropdown{
+  [data-selectable]{
+    .title{
+      font-size: 1.2em;
+      display: inline-block;
+      width: 100%;
+      font-weight: bold;
+    }
+    .type, .deckType {
+      display: inline-block;
+      width: 50%;
+      float: left;
+    }
+
+    &.hero{
+      &.active{
+//        background-color: #ebe8ff;
+      }
+      .type, .deckType{
+//        color: #099bff;
+      }
+    }
+
+    &.empire{
+      &.active{
+//        background-color: #fff0f9;
+      }
+      .type, .deckType{
+//        color: #ba1325;
+      }
+    }
+  }
+}

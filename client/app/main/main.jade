@@ -1,0 +1,46 @@
+//div(ng-include='"components/navbar/navbar.html"')
+//div(ng-include='"components/static/header.html"')
+#main
+  .bg
+    img(src='../../assets/images/bg-main.jpg')
+  .container
+    #logo
+      img(src='../../assets/images/logo-lg.png')
+    .btns-wrapper.container
+      .btns(ng-show='isLogged')
+        a.btn.btn-xl.btn-danger.btn-block(href='/new-campaign') New campaign
+        a.btn.btn-xl.btn-primary.btn-block(href='/my-campaigns') My campaigns
+      .btns(ng-show='!isLogged')
+        a.btn.btn-lg.btn-primary.btn-block(href='/login') Login
+        a.btn.btn-lg.btn-info.btn-block(href='/signup') Sign up
+
+      //.row(ng-show='isLogged')
+      //  .col-lg-12
+      //    a.btn.btn-lg.btn-primary(href='/new-campaign') New campaign
+      //  .col-lg-12
+      //    a.btn.btn-lg.btn-primary(href='/my-campaigns') My campaigns
+      //.row(ng-show='!isLogged')
+      //  .col-lg-12
+      //    a.btn.btn-link(href='/login') Login
+      //    span or
+      //    a.btn.btn-link(href='/signup') sign up
+      //    span to use the application
+
+  //.row
+  //  .col-lg-12
+  //    h1.page-header Features:
+  //    ul.nav.nav-tabs.nav-stacked.col-lg-6(ng-repeat='thing in awesomeThings')
+  //      li
+  //        a(href='#', tooltip='{{thing.info}}')
+  //          | {{thing.name}}
+  //          button.close(type='button', ng-click='deleteThing(thing)') ×
+  //
+  //form.thing-form
+  //  label Syncs in realtime across clients
+  //  p.input-group
+  //    input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
+  //    span.input-group-btn
+  //      button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
+
+//div(ng-include='"components/static/footer.html"')
+
