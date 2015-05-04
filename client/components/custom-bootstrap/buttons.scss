@@ -70,3 +70,10 @@
 .btn-danger {
   @include button-variant($brand-danger, $brand-danger);
 }
+
+.btn-link{
+  color: darken($navbar-default-link-active-bg,20);
+  &:hover{
+    color: $navbar-default-toggle-hover-bg;
+  }
+}

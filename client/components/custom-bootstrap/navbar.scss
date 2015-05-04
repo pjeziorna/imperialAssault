@@ -12,4 +12,35 @@
       background-color: $navbar-default-toggle-icon-bar-bg;
     }
   }
+
+  .navbar-nav {
+    font-size: 25px;
+    line-height: 28px;
+    > li > a {
+      color: $navbar-default-link-color;
+
+      &:hover,
+      &:focus {
+        color: $navbar-default-toggle-hover-bg;
+        background-color: transparent;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $navbar-default-toggle-hover-bg;
+        background-color: transparent;
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $navbar-default-link-disabled-color;
+        background-color: transparent;
+      }
+    }
+  }
+
 }

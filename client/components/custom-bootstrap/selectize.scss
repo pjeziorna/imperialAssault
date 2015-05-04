@@ -77,16 +77,24 @@
   }
 
   &.full {
+    border: 1px solid $brand-warning;
     background-color: $selectize-color-input-full;
   }
   &.disabled, &.disabled * {
+    color: darken($selectize-color-text,20);
+    border: 1px solid darken($selectize-color-text,20);
     cursor: default !important;
   }
   &.focus {
+    border: 1px solid $brand-warning;
     @include selectize-box-shadow($selectize-shadow-input-focus);
   }
   &.dropdown-active {
     @include selectize-border-radius($selectize-border-radius $selectize-border-radius 0 0);
+  }
+
+  &:read-only, &:-moz-read-only, &.read-only{
+    color: darken($brand-warning,20);
   }
 
   > * {
