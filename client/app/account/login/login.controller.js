@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('imperialAssaultApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window, $state) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -14,9 +14,14 @@ angular.module('imperialAssaultApp')
           password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to home
-          $window.location.reload();
-          $location.path('/');
+            //$window.location.reload();
+            $state.go('main').then(function(){
+              Auth.isLoggedInAsync(function(loggedIn){
+                if(loggedIn){
+                  $state.reload();
+                }
+              });
+            });
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
