@@ -20,7 +20,7 @@ random-bg(path='../../assets/images')
         input.form-control(id='rebelPlayer{{$index}}', ng-model='campaign.rebelPlayers[$index]', required, typeahead='player as (player.firstName + " " + player.lastName) for player in getUsers($viewValue)')
       label.col-sm-1(for='rebelPlayerHero{{$index}}') Hero
       .col-sm-5
-        selectize(id='rebelPlayerHero{{$index}}',config='herosConfig', options='heros', ng-model='campaign.rebelHeros[$index]')
+        selectize(id='rebelPlayerHero{{$index}}', config='herosConfig', options='heros', ng-model='campaign.rebelHeros[$index]')
         //input.form-control(id='rebelPlayerHero{{$index}}', ng-model='campaign.rebelPlayers[$index].hero', required, typeahead='player as (player.firstName + " " + player.lastName) for player in getUsers($viewValue)')
 
     .row

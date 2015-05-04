@@ -11,6 +11,7 @@ angular.module('imperialAssaultApp')
     };
     $scope.rebelPlayersCount = [{}];
     $scope.users = [];
+
     $scope.heros = Heros.getAllHeros();
     $scope.herosConfig = {
       create: false,
@@ -20,8 +21,6 @@ angular.module('imperialAssaultApp')
       labelField: 'name',
       sortFields: 'name'
     }
-
-    console.log('rand ', Math.floor(Math.random() * 3) + 1);
 
     $scope.getUsers = function(query) {
       return $http.get('/api/users/names?query=' + query).then(function(res){

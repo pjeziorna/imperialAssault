@@ -1,18 +1,18 @@
 @mixin button-variant($color, $background,$highlight:$btn-hover-bg) {
-  color:  transparentize(lighten($color,20), 0.3);
+  color: lighten($color,20);// transparentize(lighten($color,20), 0.3);
   background-color: transparentize($background,0.15);
   border: 1px solid transparentize($background,0.15);
   border-radius: 0px;
 
   &:disabled{
     background-color: transparentize($background,0.1);
-    color:  transparentize(lighten($color,20),0.7);
+    color: lighten($color,20);// transparentize(lighten($color,20),0.7);
     border: 1px solid transparentize($background,0.1);
   }
 
   &:hover{
     background-color: transparentize($highlight,0.15);
-    color:  transparentize(lighten($color,20),0.3);
+    color:  lighten($color,20); //transparentize(lighten($color,20),0.3);
     border: 1px solid transparentize(lighten($color,20),0.3 );
   }
 }

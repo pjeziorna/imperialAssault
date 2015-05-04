@@ -5,21 +5,25 @@ angular.module('imperialAssaultApp')
     // Service logic
     // ...
     var heros = null;
-    $http.get('/api/heros').success(function(h){
-      heros = h;
-    });
+
 
     // Public API here
     return {
-      getHeroByName: function(name){
-        for(var i = 0; i < heros.length; i++){
-          if(heros[i].name === name){
-            return heros[i];
-          }
-        }
-        return null;
-      },
+      //getHeroByName: function(name){
+      //  var h = heros;
+      //  for(var i = 0; i < h.length; i++){
+      //    if(h[i].name === name){
+      //      return h[i];
+      //    }
+      //  }
+      //  return null;
+      //},
       getAllHeros: function () {
+        if(heros === null){
+          $http.get('/api/heros').success(function(h){
+            heros = h;
+          });
+        }
         return heros;
       }
     };
