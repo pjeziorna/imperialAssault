@@ -1,44 +1,19 @@
-// Button variants
-//
-// Easily pump out default styles, as well as :hover, :focus, :active,
-// and disabled options for all buttons
+@mixin button-variant($color, $background,$highlight:$btn-hover-bg) {
+  color:  transparentize(lighten($color,20), 0.3);
+  background-color: transparentize($background,0.15);
+  border: 1px solid transparentize($background,0.15);
+  border-radius: 0px;
 
-@mixin button-variant($color, $background, $border) {
-  color: $color;
-  background-color: $background;
-  border: none;
-  //  border-color: $border;
-
-  &:hover,
-  &:focus,
-  &:active,
-  &.active,
-  .open > &.dropdown-toggle {
-    color: lighten($background, 30%);
-    background-color: darken($background, 6%);
-    //        border-color: darken($border, 12%);
-  }
-  &:active,
-  &.active,
-  .open > &.dropdown-toggle {
-    background-image: none;
-  }
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &,
-    &:hover,
-    &:focus,
-    &:active,
-    &.active {
-      background-color: $background;
-      //          border-color: $border;
-    }
+  &:disabled{
+    background-color: transparentize($background,0.1);
+    color:  transparentize(lighten($color,20),0.7);
+    border: 1px solid transparentize($background,0.1);
   }
 
-  .badge {
-    color: $background;
-    background-color: $color;
+  &:hover{
+    background-color: transparentize($highlight,0.15);
+    color:  transparentize(lighten($color,20),0.3);
+    border: 1px solid transparentize(lighten($color,20),0.3 );
   }
 }
 
@@ -68,6 +43,30 @@
   margin-top: 25px;
 }
 
+.btn-default {
+  @include button-variant($brand-default, $brand-default-bg);
+}
+
+.btn-primary {
+  @include button-variant($brand-primary, $brand-primary);
+}
+
+.btn-success {
+  @include button-variant($brand-success, $brand-success);
+}
 .btn-inverse{
-  @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
+  @include button-variant($btn-inverse-bg, $btn-inverse-bg);
+}
+
+// Info appears as blue-green
+.btn-info {
+  @include button-variant($brand-info, $brand-info);
+}
+// Warning appears as orange
+.btn-warning {
+  @include button-variant($brand-warning, $brand-warning);
+}
+// Danger and error appear as red
+.btn-danger {
+  @include button-variant($brand-danger, $brand-danger);
 }

@@ -17,13 +17,14 @@ $gray:                   lighten(#000, 33.5%) !default; // #555
 $gray-light:             lighten(#000, 60%) !default;   // #999
 $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 
-$brand-primary:         #4c236e !default;
-$brand-success:         #357e1f !default;
-$brand-info:            #0f6e6b !default;
+
+$brand-primary:         #4c236f !default;
+$brand-success:         #347e1f !default;
+$brand-info:            #0f6d6c !default;
 $brand-warning:         #a0931c !default;
-$brand-danger:          #8c2525 !default;
-
-
+$brand-danger:          #8c2526 !default;
+$brand-default:         #fff !default;
+$brand-default-bg:      #9a9a97 !default;
 //== Scaffolding
 //
 //## Settings for some of the most global styles.
@@ -146,38 +147,10 @@ $table-border-color:            #76735d !default;
 
 $btn-font-weight:                normal !default;
 
-$btn-default-color:              transparentize(#fff, 0.4) !default;
-$btn-default-bg:                 transparentize(#4c4b42, 0.15) !default;
-$btn-default-border:             none !default;
-
-$btn-primary-color:              transparentize(#fff, 0.4) !default;
-$btn-primary-bg:                 transparentize($brand-primary, 0.15) !default;
-$btn-primary-border:             none !default;
-
-$btn-success-color:              transparentize(#fff, 0.4) !default;
-$btn-success-bg:                 transparentize($brand-success, 0.15) !default;
-$btn-success-border:             none !default;
-
-$btn-info-color:                 transparentize(#fff, 0.4) !default;
-$btn-info-bg:                    transparentize($brand-info, 0.15) !default;
-$btn-info-border:                none !default;
-
-$btn-warning-color:              transparentize(#fff, 0.4) !default;
-$btn-warning-bg:                 transparentize($brand-warning, 0.15) !default;
-$btn-warning-border:             none !default;
-
-$btn-danger-color:               transparentize(#fff, 0.4) !default;
-$btn-danger-bg:                  transparentize($brand-danger, 0.15) !default;
-$btn-danger-border:              none !default;
-
+$btn-hover-bg:                    #1a1919 !default;
 $btn-inverse-color:               transparentize(#000, 0.4) !default;
 $btn-inverse-bg:                  transparentize(#e1ce20, 0.15) !default;
 $btn-inverse-border:              none !default;
-
-$btn-hover-bg:                    #1a1919 !default;
-
-
-
 $btn-link-disabled-color:        #69685e !default;
 
 
