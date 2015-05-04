@@ -55,7 +55,7 @@
   @include button-variant($brand-success, $brand-success);
 }
 .btn-inverse{
-  @include button-variant($btn-inverse-bg, $btn-inverse-bg);
+  @include button-variant($brand-inverse, $brand-inverse);
 }
 
 // Info appears as blue-green
