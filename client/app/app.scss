@@ -23,9 +23,11 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     min-height: 100%;
   }
 }
-*{
+*:focus{
   outline-color: $outline-color;
+  outline-style: solid;
 }
+
 
 .container.main{
   padding-bottom: $footer-height;

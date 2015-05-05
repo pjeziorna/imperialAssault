@@ -10,10 +10,16 @@
     border: 1px solid transparentize($background,0.1);
   }
 
-  &:hover{
+  &:hover,&:focus{
     background-color: transparentize($highlight,0.15);
     color:  lighten($color,20); //transparentize(lighten($color,20),0.3);
     border: 1px solid transparentize(lighten($color,20),0.3 );
+  }
+
+  &:focus{
+    outline-color: $outline-color;
+    outline-style: $outline-style;
+    outline-width: $outline-width;
   }
 }
 
@@ -73,7 +79,13 @@
 
 .btn-link{
   color: darken($navbar-default-link-active-bg,20);
-  &:hover{
+  &:hover,&:focus{
     color: $navbar-default-toggle-hover-bg;
+  }
+
+  &:focus{
+    outline-color: $outline-color;
+    outline-style: $outline-style;
+    outline-width: $outline-width;
   }
 }

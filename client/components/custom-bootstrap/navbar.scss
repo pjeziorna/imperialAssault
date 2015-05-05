@@ -1,4 +1,13 @@
 .navbar-default {
+
+  .navbar-brand{
+    &:focus{
+      outline-color: $outline-color;
+      outline-style: $outline-style;
+      outline-width: $outline-width;
+    }
+  }
+
   .navbar-toggle {
     border-color: $navbar-default-toggle-border-color;
     &:hover,
@@ -8,6 +17,13 @@
         background-color: $navbar-default-toggle-icon-bar-hover-bg;
       }
     }
+
+    &:focus{
+      outline-color: $outline-color;
+      outline-style: $outline-style;
+      outline-width: $outline-width;
+    }
+
     .icon-bar {
       background-color: $navbar-default-toggle-icon-bar-bg;
     }
@@ -24,6 +40,12 @@
         color: $navbar-default-toggle-hover-bg;
         background-color: transparent;
       }
+
+      &:focus{
+        outline-color: $outline-color;
+        outline-style: $outline-style;
+        outline-width: $outline-width;
+      }
     }
     > .active > a {
       &,
@@ -32,6 +54,12 @@
         color: $navbar-default-toggle-hover-bg;
         background-color: transparent;
       }
+
+      &:focus{
+        outline-color: $outline-color;
+        outline-style: $outline-style;
+        outline-width: $outline-width;
+      }
     }
     > .disabled > a {
       &,
@@ -39,6 +67,12 @@
       &:focus {
         color: $navbar-default-link-disabled-color;
         background-color: transparent;
+      }
+
+      &:focus{
+        outline-color: $outline-color;
+        outline-style: $outline-style;
+        outline-width: $outline-width;
       }
     }
   }

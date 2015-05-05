@@ -86,8 +86,10 @@
     cursor: default !important;
   }
   &.focus {
-    border: 1px solid $brand-warning;
-    @include selectize-box-shadow($selectize-shadow-input-focus);
+    $color-rgba: rgba(red($outline-color), green($outline-color), blue($outline-color), .6);
+    border-color: $outline-color;
+    outline: 0;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $color-rgba);
   }
   &.dropdown-active {
     @include selectize-border-radius($selectize-border-radius $selectize-border-radius 0 0);
