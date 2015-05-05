@@ -5,7 +5,9 @@ random-bg(path='../../assets/images')
   .row
     .col-sm-12
       mc-messages
-  button.btn.btn-link(ng-click='backToMainPage()') Back to main page
+  button.btn.btn-link(ng-click='backToMainPage()')
+    span.glyphicon.glyphicon-chevron-left
+    | Back to main page
   form.form-horizontal(name='newCampaignForm', ng-submit='newCampaignForm.$valid && createCampaign()')
     .form-group
       label.col-sm-1(for='campaignName') Name

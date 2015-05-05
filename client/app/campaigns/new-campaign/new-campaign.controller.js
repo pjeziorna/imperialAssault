@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('imperialAssaultApp')
-  .controller('NewCampaignCtrl', function ($scope, $state, $http, Auth, messageCenterService, Heros) {
+  .controller('NewCampaignCtrl', function ($scope, $state, $http, Auth, messageCenterService, HerosFactory) {
     var Ctrl = this;
     $scope.randBg = (Math.floor(Math.random() * 4) + 1);
     $scope.campaign = {
@@ -12,7 +12,7 @@ angular.module('imperialAssaultApp')
     $scope.rebelPlayersCount = [{}];
     $scope.users = [];
 
-    $scope.heros = Heros.getAllHeros();
+    $scope.heros = HerosFactory.getAllHeros();
     $scope.herosConfig = {
       create: false,
       persist: false,

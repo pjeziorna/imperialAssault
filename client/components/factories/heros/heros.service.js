@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('imperialAssaultApp')
-  .factory('Heros', function ($http) {
+  .factory('HerosFactory', function ($http) {
     // Service logic
     // ...
     var heros = null;

@@ -44,7 +44,7 @@ angular.module('imperialAssaultApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth, Heros, MissionFactory) {
+  .run(function ($rootScope, $location, Auth, HerosFactory, MissionFactory) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -55,6 +55,6 @@ angular.module('imperialAssaultApp', [
     });
 
     // initialaze all factories/services
-    Heros.getAllHeros();
+    HerosFactory.getAllHeros();
     MissionFactory.getAllMissions();
   });

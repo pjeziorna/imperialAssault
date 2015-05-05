@@ -8,7 +8,9 @@ random-bg(path='../../assets/images')
       mc-messages
   .row
     .col-md-12
-      button.btn.btn-link(ng-click='backToCampaignList()') Back to campains' list
+      button.btn.btn-link(ng-click='backToCampaignList()')
+        span.glyphicon.glyphicon-chevron-left
+        | Back to campains' list
   .list-group
     .list-group-item(ng-repeat='track in tracks')
       div(ng-show='!track.isEdited')
@@ -86,8 +88,9 @@ random-bg(path='../../assets/images')
 
 
     .col-md-12(ng-show='canAdd')
-      button.btn.btn-link(ng-click='addTrack()')
+      button.btn.btn-lg.btn-warning.pull-right(ng-click='addTrack()')
         span.glyphicon.glyphicon-plus
+        | Add Mission
 
 
 
