@@ -12,3 +12,9 @@ To create app for local usage there should be installed a few things:
 - mongoDB (2.6.3)
 - Ruby (1.9.3)
 - compass
+
+After clone repo in main directory run: 
+npm install
+bower install
+
+To preview app run grunt serve
