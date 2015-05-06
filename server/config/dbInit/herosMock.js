@@ -1,7 +1,8 @@
-db.getCollection('heros').insert([
-  {
-    "name" : "Diala Passil"
-  },
+'use strict';
+var mongoose = require('mongoose');
+var mock = [{
+  "name" : "Diala Passil"
+},
   {
     "name" : "Fenn Signis"
   },
@@ -16,6 +17,6 @@ db.getCollection('heros').insert([
   },
   {
     "name" : "Mak Eshka'rey"
-  }
+  }];
 
-]);
+module.exports = mock;

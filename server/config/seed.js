@@ -6,33 +6,47 @@
 'use strict';
 
 var User = require('../api/user/user.model');
+var Hero = require('../api/hero/hero.model');
+var Mission = require('../api/mission/mission.model');
+
+var MissionsMock = require('./dbInit/missionsMock');
+var HerosMock = require('./dbInit/herosMock');
+var UsersMock = require('./dbInit/usersMock');
 
 User.find({}).remove(function() {
-  User.create({
-    _id: 'test',
-    provider: 'local',
-    firstName: 'Test',
-    lastName: 'User',
-    email: 'test@test.com',
-    password: 'test'
-  }, {
-    _id: 'admin',
-    provider: 'local',
-    role: 'admin',
-    firstName: 'Admin',
-    lastName: '',
-    email: 'admin@admin.com',
-    password: 'admin'
-  }, {
-    _id: 'jeap',
-    provider: 'local',
-    role: 'admin',
-    firstName: 'Paulina',
-    lastName: 'Jeziorna',
-    email: 'jeziorna@gmail.com',
-    password: '123'
-  }, function() {
+  User.create(UsersMock, function() {
       console.log('finished populating users');
     }
   );
 });
+
+Hero.count({}, function(err, count){
+  if(count === HerosMock.length) return true;
+  if(count > 0 && count < HerosMock.length){
+    Hero.find({}).remove(function(){
+      Hero.create(HerosMock, function(){
+        console.log('finished populating heros');
+      })
+    })
+  }else{
+    Hero.create(HerosMock, function(){
+      console.log('finished populating heros');
+    });
+  }
+});
+
+Mission.count({}, function(err, count){
+  if(count === MissionsMock.length) return true;
+  if(count > 0 && count < MissionsMock.length){
+    Mission.find({}).remove(function(){
+      Mission.create(MissionsMock, function(){
+        console.log('finished populating missions');
+      });
+    });
+  }else{
+    Mission.create(MissionsMock, function(){
+      console.log('finished populating missions');
+    });
+  }
+});
+
