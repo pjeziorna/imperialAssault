@@ -14,17 +14,6 @@ random-bg(path='../../assets/images')
           p.help-block(ng-show='form.name.$error.required && submitted')
             | A name is required
 
-        //.form-group(ng-class='{ "has-success": form.email.$valid && submitted,\
-        //"has-error": form.email.$invalid && submitted }')
-        //  label Email
-        //  input.form-control(type='email', name='email', ng-model='user.email', required='', mongoose-error='')
-        //  p.help-block(ng-show='form.email.$error.email && submitted')
-        //    | Doesn't look like a valid email.
-        //  p.help-block(ng-show='form.email.$error.required && submitted')
-        //    | What's your email address?
-        //  p.help-block(ng-show='form.email.$error.mongoose')
-        //    | {{ errors.email }}
-
         .form-group(ng-class='{ "has-success": form.password.$valid && submitted,\
         "has-error": form.password.$invalid && submitted }')
           label Password
@@ -35,26 +24,9 @@ random-bg(path='../../assets/images')
             | {{ errors.password }}
 
         div
-          button.btn.btn-inverse.btn-lg.btn-login(type='submit')
+          button.btn.btn-success.btn-lg.pull-right(type='submit')
             | Sign up
-          = ' '
-          a.btn.btn-default.btn-lg.btn-register(href='/login')
+          a.btn.btn-warning.btn-lg.pull-left(href='/login')
             | Login
 
-
-
-        hr
-
-        div
-          a.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
-            i.fa.fa-facebook
-            |  Connect with Facebook
-          = ' '
-          a.btn.btn-google-plus(href='', ng-click='loginOauth("google")')
-            i.fa.fa-google-plus
-            |  Connect with Google+
-          = ' '
-          a.btn.btn-twitter(href='', ng-click='loginOauth("twitter")')
-            i.fa.fa-twitter
-            |  Connect with Twitter
   hr

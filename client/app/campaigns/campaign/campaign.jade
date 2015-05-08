@@ -83,14 +83,15 @@ random-bg(path='../../assets/images')
               selectize(config='winnersConfig', options='winners', ng-model='track.winner')
               //select(ng-model='track.winner', ng-options='winner for winner in winners', class='form-control', required)
           .form-group
-            input.btn.btn-primary(type='submit', value='Add mission')
-            input.btn.btn-primary(type='button', value='Cancel', ng-click='removeTrack(track, $index)')
+            .col-md-12
+              input.btn.btn-default.pull-left(type='button', value='Cancel', ng-click='removeTrack(track, $index)')
+              input.btn.btn-success.pull-right(type='submit', value='Add mission')
 
-
-    .col-md-12(ng-show='canAdd')
-      button.btn.btn-lg.btn-warning.pull-right(ng-click='addTrack()')
-        span.glyphicon.glyphicon-plus
-        | Add Mission
+    .btn-row
+      .col-md-12(ng-show='canAdd')
+         button.btn.btn-lg.btn-warning.pull-right(ng-click='addTrack()')
+           span.glyphicon.glyphicon-plus
+           | Add Mission
 
 
 
