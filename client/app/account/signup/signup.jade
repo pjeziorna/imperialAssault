@@ -6,27 +6,47 @@ random-bg(path='../../assets/images')
     .col-sm-12
       h1 Sign up
     .col-sm-12
-      form.form(name='form', ng-submit='register(form)', novalidate='')
-        .form-group(ng-class='{ "has-success": form.name.$valid && submitted,\
-        "has-error": form.name.$invalid && submitted }')
-          label Login
-          input.form-control(type='text', name='login', ng-model='user.login', required='')
-          p.help-block(ng-show='form.name.$error.required && submitted')
-            | A name is required
+      //form.form(name='form', ng-submit='register(form)', novalidate='')
+      //  .form-group(ng-class='{ "has-success": form.name.$valid && submitted,\
+      //  "has-error": form.name.$invalid && submitted }')
+      //    label Login
+      //    input.form-control(type='text', name='login', ng-model='user.login', required='')
+      //    p.help-block(ng-show='form.name.$error.required && submitted')
+      //      | A name is required
+      //
+      //  .form-group(ng-class='{ "has-success": form.password.$valid && submitted,\
+      //  "has-error": form.password.$invalid && submitted }')
+      //    label Password
+      //    input.form-control(type='password', name='password', ng-model='user.password', ng-minlength='3', required='', mongoose-error='')
+      //    p.help-block(ng-show='(form.password.$error.minlength || form.password.$error.required) && submitted')
+      //      | Password must be at least 3 characters.
+      //    p.help-block(ng-show='form.password.$error.mongoose')
+      //      | {{ errors.password }}
 
-        .form-group(ng-class='{ "has-success": form.password.$valid && submitted,\
-        "has-error": form.password.$invalid && submitted }')
-          label Password
-          input.form-control(type='password', name='password', ng-model='user.password', ng-minlength='3', required='', mongoose-error='')
-          p.help-block(ng-show='(form.password.$error.minlength || form.password.$error.required) && submitted')
-            | Password must be at least 3 characters.
-          p.help-block(ng-show='form.password.$error.mongoose')
-            | {{ errors.password }}
+      .col-sm-12
+      form.form(name='form', ng-submit='login(form)', novalidate='')
+        .row
+          .col-md-6
+            .form-group
+              label(for='login') Login
+              input.form-control(id='login', type='text', name='login', ng-model='user.login')
+          .col-md-6
+            .form-group
+              label(for='passwd') Password
+              input.form-control(id='passwd', type='password', name='password', ng-model='user.password')
 
-        div
-          button.btn.btn-success.btn-lg.pull-right(type='submit')
-            | Sign up
-          a.btn.btn-warning.btn-lg.pull-left(href='/login')
-            | Login
+        .form-group.has-error
+          p.help-block(ng-show='form.login.$error.required && form.password.$error.required && submitted')
+            | Please enter your login and password.
+          p.help-block {{ errors.other }}
+
+        .row
+          .col-md-6
+            a.btn.btn-warning.btn-block(href='/login')
+              | Login
+          .col-md-6
+            button.btn.btn-success.btn-block(type='submit')
+              | Sign up
+
 
   hr
