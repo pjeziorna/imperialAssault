@@ -12,11 +12,11 @@ random-bg(path='../../assets/images')
         span.glyphicon.glyphicon-chevron-left
         | Back to campains' list
   .list-group
-    .list-group-item(ng-repeat='track in tracks')
+    .list-group-item.mission(ng-repeat='track in tracks', ng-class='{"hero" : track.winner == "Rebel Alliance" , "empire" : track.winner == "Empire" }')
       div(ng-show='!track.isEdited')
         .row
           .col-sm-9
-            h4 {{track.mission.title}}
+            h4.title {{track.mission.title}}
           .col-sm-3.text-right
             button.btn.btn-link(ng-click='editTrack(track)')
               h4.glyphicon.glyphicon-edit

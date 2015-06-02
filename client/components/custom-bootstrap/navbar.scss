@@ -1,7 +1,7 @@
 .navbar-default {
 
   .navbar-brand{
-    &:focus{
+    &:focus, &:active:focus{
       outline-color: $outline-color;
       outline-style: $outline-style;
       outline-width: $outline-width;
@@ -18,7 +18,7 @@
       }
     }
 
-    &:focus{
+    &:focus, &:active:focus{
       outline-color: $outline-color;
       outline-style: $outline-style;
       outline-width: $outline-width;
@@ -41,7 +41,7 @@
         background-color: $navbar-default-link-hover-bg;
       }
 
-      &:focus{
+      &:focus, &:active:focus{
         outline-color: $outline-color;
         outline-style: $outline-style;
         outline-width: $outline-width;
@@ -55,7 +55,7 @@
         background-color: $navbar-default-link-active-bg;
       }
 
-      &:focus{
+      &:focus, &:active:focus{
         outline-color: $outline-color;
         outline-style: $outline-style;
         outline-width: $outline-width;
@@ -69,7 +69,7 @@
         background-color: transparent;
       }
 
-      &:focus{
+      &:focus, &:active:focus{
         outline-color: $outline-color;
         outline-style: $outline-style;
         outline-width: $outline-width;

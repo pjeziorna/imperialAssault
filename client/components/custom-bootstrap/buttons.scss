@@ -16,7 +16,7 @@
     border: 1px solid transparentize(lighten($color,20),0.3 );
   }
 
-  &:focus{
+  &:focus, &:active:focus{
     outline-color: $outline-color;
     outline-style: $outline-style;
     outline-width: $outline-width;
@@ -84,7 +84,7 @@
     color: lighten($navbar-default-toggle-hover-bg, 10);
   }
 
-  &:focus{
+  &:focus, &:active:focus{
     outline-color: $outline-color;
     outline-style: $outline-style;
     outline-width: $outline-width;

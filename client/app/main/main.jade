@@ -8,11 +8,11 @@
       img(src='../../assets/images/logo-lg.png')
     .btns-wrapper.container
       .btns(ng-show='isLogged')
-        a.btn.btn-xl.btn-danger.btn-block(href='/new-campaign') New campaign
-        a.btn.btn-xl.btn-primary.btn-block(href='/my-campaigns') My campaigns
+        a.btn.btn-xl.btn-danger.btn-block(ui-sref='new-campaign') New campaign
+        a.btn.btn-xl.btn-primary.btn-block(ui-sref='my-campaigns') My campaigns
       .btns(ng-show='!isLogged')
-        a.btn.btn-xl.btn-danger.btn-block(href='/login') Login
-        a.btn.btn-xl.btn-primary.btn-block(href='/signup') Sign up
+        a.btn.btn-xl.btn-danger.btn-block(ui-sref='login') Login
+        a.btn.btn-xl.btn-primary.btn-block(ui-sref='signup') Sign up
 
       //.row(ng-show='isLogged')
       //  .col-lg-12

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('imperialAssaultApp')
-  .controller('CampaignCtrl', function ($scope, $state, $stateParams, $http, Winners, messageCenterService, MissionFactory) {
+  .controller('CampaignCtrl', function ($scope, $state, $stateParams, $http, $timeout, Winners, messageCenterService, MissionFactory) {
     $scope.randBg = (Math.floor(Math.random() * 4) + 1);
     $scope.campaign = null;
     $scope.tracks = [];
@@ -53,6 +53,9 @@ angular.module('imperialAssaultApp')
             (type ? '<span class="type">Type: ' + escape(type) + '</span>' : '') +
             (deckType ? '<span class="deckType">Deck type: ' + escape(deckType) + '</span>' : '') +
             '</div>';
+        },
+        item: function(item, escape){
+          return '<div data-value="' + item._id +'" class="item '+ item.deckType +'">'+item.title+'</div>';
         }
       }
     }
@@ -63,12 +66,14 @@ angular.module('imperialAssaultApp')
     if(campaignId === null){
       $state.transitionTo('my-campaigns');
     } else {
-      $http.get('/api/campaigns/' + campaignId).success(function(campaign){
-        $scope.campaign = campaign;
-      });
+      $timeout( function() {
+        $http.get('/api/campaigns/' + campaignId).success(function (campaign) {
+          $scope.campaign = campaign;
+        });
 
-      $http.get('/api/tracks/' + campaignId).success(function(tracks){
-        Ctrl.sortTracks(tracks);
+        $http.get('/api/tracks/' + campaignId).success(function (tracks) {
+          Ctrl.sortTracks(tracks);
+        });
       });
     }
 
@@ -113,11 +118,15 @@ angular.module('imperialAssaultApp')
 
     $scope.removeTrack = function(track, index){
       $scope.canAdd = true;
-      $scope.tracks.splice(index, 1);
-      $scope.campaign.tracks.splice(index, 1);
-      if(track._id !== undefined){
-        $http.delete('/api/tracks/' + track._id);
-        $http.patch('/api/campaigns/' + campaignId, $scope.campaign);
+      if($scope.editMode === "new"){
+        $scope.tracks.splice(index, 1);
+        $scope.campaign.tracks.splice(index, 1);
+        if(track._id !== undefined){
+          $http.delete('/api/tracks/' + track._id);
+          $http.patch('/api/campaigns/' + campaignId, $scope.campaign);
+        }
+      }else if($scope.editMode === "edit"){
+        track.isEdited = false;
       }
     };
 

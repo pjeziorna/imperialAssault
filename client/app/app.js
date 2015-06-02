@@ -4,8 +4,10 @@ angular.module('imperialAssaultApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'btford.socket-io',
   'ui.router',
+  'anim-in-out',
   'ui.bootstrap',
   'MessageCenterModule',
   'selectize'
@@ -44,7 +46,7 @@ angular.module('imperialAssaultApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth, HerosFactory, MissionFactory) {
+  .run(function ($rootScope, $location, $window, Auth, HerosFactory, MissionFactory) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -54,6 +56,27 @@ angular.module('imperialAssaultApp', [
       });
     });
 
+    $rootScope.$on('animStart', function($event, element, speed) {
+      console.info("window height ", window.outerHeight);
+      $(element).addClass('animating');
+      $('.ui-view-container').addClass('animating');
+      console.info("$(element) ", $(element).attr('style'));
+      //console.log($event);
+    });
+
+    $rootScope.$on('animEnd', function($event, element, speed) {
+      // do something
+      console.info("window height ", window.outerHeight);
+      console.info("$(element) ", $(element).attr('style'));
+      $(element).removeClass('animating');
+      $('.ui-view-container').removeClass('animating');
+    });
+
+    $('.anim-in-out').height(window.innerHeight + "px");
+
+    angular.element($window).bind('resize', function(){
+      $('.anim-in-out').height(window.innerHeight + "px");
+    });
     // initialaze all factories/services
     HerosFactory.getAllHeros();
     MissionFactory.getAllMissions();

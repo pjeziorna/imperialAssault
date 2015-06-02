@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('imperialAssaultApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window, $state) {
+  .controller('LoginCtrl', function ($scope, Auth, $window, $state) {
     $scope.user = {};
     $scope.errors = {};
 

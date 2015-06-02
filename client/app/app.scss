@@ -27,7 +27,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     min-height: 100%;
   }
 }
-*:focus{
+*:focus, *:active:focus{
   outline-color: $outline-color;
   outline-style: solid;
 }
@@ -46,6 +46,13 @@ footer{
   border-top: 1px solid $footer-border-color;
   padding-top: 10px;
   z-index: 100;
+}
+
+.ui-view-container.animating{
+  overflow: hidden;
+}
+[ui-view]{
+  height: 100%;
 }
 
 /* Responsive: Portrait tablets and up */
