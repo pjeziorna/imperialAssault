@@ -154,7 +154,9 @@ $btn-hover-bg:                    #1a1919 !default;
 $btn-inverse-color:               transparentize(#000, 0.4) !default;
 $btn-inverse-bg:                  transparentize(#e1ce20, 0.15) !default;
 $btn-inverse-border:              none !default;
-$btn-link-disabled-color:        #69685e !default;
+$btn-link-disabled-color:         #69685e !default;
+$btn-vertical-size:               $padding-base-vertical * 1.2;
+$btn-horizontal-size:             $padding-base-horizontal * 1.2;
 
 
 //== Forms

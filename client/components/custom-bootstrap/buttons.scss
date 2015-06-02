@@ -34,6 +34,7 @@
 
 .btn{
   text-transform: uppercase;
+  @include button-size($btn-vertical-size, $btn-horizontal-size, $font-size-base, $line-height-base, $border-radius-base);
 }
 .btn-xl {
   // line-height: ensure even-numbered height of button next to large input
