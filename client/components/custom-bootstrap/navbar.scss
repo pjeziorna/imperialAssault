@@ -37,8 +37,8 @@
 
       &:hover,
       &:focus {
-        color: $navbar-default-toggle-hover-bg;
-        background-color: transparent;
+        color: $navbar-default-link-hover-color;
+        background-color: $navbar-default-link-hover-bg;
       }
 
       &:focus{
@@ -51,8 +51,8 @@
       &,
       &:hover,
       &:focus {
-        color: $navbar-default-toggle-hover-bg;
-        background-color: transparent;
+        color: $navbar-default-link-active-color;
+        background-color: $navbar-default-link-active-bg;
       }
 
       &:focus{
