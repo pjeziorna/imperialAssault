@@ -6,6 +6,7 @@ angular.module('imperialAssaultApp')
     $scope.campaign = null;
     $scope.tracks = [];
     $scope.canAdd = true;
+    $scope.editMode = null;
     $scope.newTrack = null;
     $scope.winners = Winners;
     $scope.winnersConfig = {
@@ -74,22 +75,40 @@ angular.module('imperialAssaultApp')
     $scope.addTrack = function(){
       $scope.tracks.push(Ctrl.createNewTrack());
       $scope.canAdd = false;
+      $scope.editMode = "new";
     };
 
     $scope.saveTrack = function(track){
       delete track.isEdited;
       delete track.isCollapsed;
       track.mission = MissionFactory.getMissionById(track.mission._id);
-      $http.post('/api/tracks', track).success(function(trackSaved){
-        $scope.canAdd = true;
-        $scope.tracks[$scope.tracks.length - 1] = trackSaved;
-        $scope.campaign.timeSpent = Ctrl.updateTimeSpent(trackSaved);
-        $scope.campaign.tracks.push(trackSaved._id);
-        $http.patch('/api/campaigns/' + campaignId, $scope.campaign).success(function(){
-          messageCenterService.add('success', 'New mission saved', {timeout: 3000});
-        });
-
-      });
+      if($scope.editMode === "new"){
+        $http.post('/api/tracks', track)
+          .success(function(trackSaved){
+            $scope.canAdd = true;
+            $scope.editMode = null;
+            $scope.tracks[$scope.tracks.length - 1] = trackSaved;
+            $scope.campaign.timeSpent = Ctrl.updateTimeSpent(trackSaved);
+            $scope.campaign.tracks.push(trackSaved._id);
+            $http.patch('/api/campaigns/' + campaignId, $scope.campaign).success(function(){
+              messageCenterService.add('success', 'New mission saved', {timeout: 3000});
+            });
+          })
+          .error(function(err, doc){
+            $scope.canAdd = true;
+            $scope.editMode = null;
+            messageCenterService.add('danger', 'Failed to save mission', {timeout: 3000});
+            console.error(err);
+          });
+      }else if($scope.editMode === "edit"){
+        $http.put('/api/tracks/' + track._id, track)
+          .success(function(err, trackSaved){
+            $scope.canAdd = true;
+            $scope.editMode = null;
+            track.isCollapsed = true;
+            messageCenterService.add('success', 'Mission saved', {timeout: 3000});
+          });
+      }
     };
 
     $scope.removeTrack = function(track, index){
@@ -104,6 +123,12 @@ angular.module('imperialAssaultApp')
 
     $scope.backToCampaignList = function(){
       $state.transitionTo('my-campaigns');
+    };
+
+    $scope.editTrack = function(track){
+      track.isEdited = !track.isEdited;
+      $scope.canAdd = !$scope.canAdd;
+      $scope.editMode = "edit";
     };
 
     this.sortTracks = function(tracks){

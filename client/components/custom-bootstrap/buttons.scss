@@ -1,4 +1,4 @@
-@mixin button-variant($color, $background,$highlight:$btn-hover-bg) {
+@mixin button-variant($color, $background, $highlight:$btn-hover-bg) {
   color: lighten($color,20);// transparentize(lighten($color,20), 0.3);
   background-color: transparentize($background,0.15);
   border: 1px solid transparentize($background,0.15);
@@ -78,9 +78,9 @@
 }
 
 .btn-link{
-  color: darken($navbar-default-link-active-bg,20);
+  color: darken($navbar-default-link-active-bg,10);
   &:hover,&:focus{
-    color: $navbar-default-toggle-hover-bg;
+    color: lighten($navbar-default-toggle-hover-bg, 10);
   }
 
   &:focus{

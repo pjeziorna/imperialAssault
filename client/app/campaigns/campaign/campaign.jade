@@ -18,6 +18,8 @@ random-bg(path='../../assets/images')
           .col-sm-9
             h4 {{track.mission.title}}
           .col-sm-3.text-right
+            button.btn.btn-link(ng-click='editTrack(track)')
+              h4.glyphicon.glyphicon-edit
             button.btn.btn-link(ng-click='track.isCollapsed = !track.isCollapsed')
               h4.glyphicon.glyphicon-chevron-down(ng-show='track.isCollapsed')
               h4.glyphicon.glyphicon-chevron-up(ng-show='!track.isCollapsed')
@@ -83,9 +85,10 @@ random-bg(path='../../assets/images')
               selectize(config='winnersConfig', options='winners', ng-model='track.winner')
               //select(ng-model='track.winner', ng-options='winner for winner in winners', class='form-control', required)
           .form-group
-            .col-md-12
-              input.btn.btn-default.pull-left(type='button', value='Cancel', ng-click='removeTrack(track, $index)')
-              input.btn.btn-success.pull-right(type='submit', value='Add mission')
+            .col-md-6
+              input.btn.btn-default.btn-block.pull-left(type='button', value='Cancel', ng-click='removeTrack(track, $index)')
+            .col-md-6
+              input.btn.btn-success.btn-block.pull-right(type='submit', value='Save mission')
 
     .btn-row
       .col-md-12(ng-show='canAdd')

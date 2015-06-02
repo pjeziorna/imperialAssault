@@ -21,10 +21,10 @@ $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 $brand-primary:         #4c236f !default;
 $brand-success:         #347e1f !default;
 $brand-info:            #0f6d6c !default;
-$brand-warning:         #a0931c !default;
+$brand-warning:         #ead720 !default;
 $brand-danger:          #8c2526 !default;
-$brand-default:         #fff !default;
-$brand-default-bg:      #9a9a97 !default;
+$brand-default:         transparentize(#fff, 0.3) !default;
+$brand-default-bg:      #7e7e7e !default;
 $brand-inverse:         #e1ce20;
 //== Scaffolding
 //
@@ -36,7 +36,7 @@ $body-bg:               #151a1b !default;
 $text-color:            #b5b3a2 !default;
 
 //** Global textual link color.
-$link-color:            #e1ce20 !default;
+$link-color:            #ead720 !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      #d9f10b !default;
 
@@ -661,7 +661,7 @@ $list-group-disabled-bg:         #262828 !default;
 //** Text color for content within disabled list items
 $list-group-disabled-text-color: $list-group-disabled-color !default;
 
-$list-group-link-color:         #e1ce20 !default;
+$list-group-link-color:         $link-color !default;
 $list-group-link-hover-color:   $list-group-link-color !default;
 $list-group-link-heading-color: #b5b3a2 !default;
 
