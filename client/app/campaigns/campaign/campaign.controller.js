@@ -21,12 +21,12 @@ angular.module('imperialAssaultApp')
       valueField: '_id',
       labelField: 'title',
       sortFields: 'title',
-      searchField: ['title', 'type'],
+      searchField: ['title', 'missionType', 'deckType'],
       maxItems: 1,
       render: {
         option: function(item, escape) {
           var title = item.title;
-          var type = item.title ? item.type : null;
+          var type = item.title ? item.missionType : null;
           var deckType = item.title ? item.deckType : null;
           return '<div class="' + deckType + '">' +
             '<span class="strong title">' + escape(title) + '</span>' +
@@ -42,11 +42,11 @@ angular.module('imperialAssaultApp')
       valueField: '_id',
       labelField: 'title',
       sortFields: 'title',
-      searchField: ['title'],
+      searchField: ['title', 'missionType', 'deckType'],
       render: {
         option: function(item, escape) {
           var title = item.title;
-          var type = item.title ? item.type : null;
+          var type = item.title ? item.missionType : null;
           var deckType = item.title ? item.deckType : null;
           return '<div class="' + deckType + '">' +
             '<span class="strong title">' + escape(title) + '</span>' +
@@ -87,6 +87,7 @@ angular.module('imperialAssaultApp')
       delete track.isEdited;
       delete track.isCollapsed;
       track.mission = MissionFactory.getMissionById(track.mission._id);
+      console.log("mission to save", track.mission);
       if($scope.editMode === "new"){
         $http.post('/api/tracks', track)
           .success(function(trackSaved){

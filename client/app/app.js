@@ -57,17 +57,11 @@ angular.module('imperialAssaultApp', [
     });
 
     $rootScope.$on('animStart', function($event, element, speed) {
-      console.info("window height ", window.outerHeight);
       $(element).addClass('animating');
       $('.ui-view-container').addClass('animating');
-      console.info("$(element) ", $(element).attr('style'));
-      //console.log($event);
     });
 
     $rootScope.$on('animEnd', function($event, element, speed) {
-      // do something
-      console.info("window height ", window.outerHeight);
-      console.info("$(element) ", $(element).attr('style'));
       $(element).removeClass('animating');
       $('.ui-view-container').removeClass('animating');
     });
@@ -77,6 +71,7 @@ angular.module('imperialAssaultApp', [
     angular.element($window).bind('resize', function(){
       $('.anim-in-out').height(window.innerHeight + "px");
     });
+
     // initialaze all factories/services
     HerosFactory.getAllHeros();
     MissionFactory.getAllMissions();

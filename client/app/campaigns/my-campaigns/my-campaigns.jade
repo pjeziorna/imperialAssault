@@ -11,6 +11,7 @@ random-bg(path='../../assets/images')
       .row
         .col-sm-9
           h4 {{campaign.name}}
+          h6 {{campaign.startDate}}
         .col-sm-3.text-right
           button.btn.btn-link(ng-show='campaign.canEdit', ng-click='editCampaign(campaign)')
             h4.glyphicon.glyphicon-edit
@@ -18,18 +19,20 @@ random-bg(path='../../assets/images')
             h4.glyphicon.glyphicon-chevron-down(ng-show='campaign.isCollapsed')
             h4.glyphicon.glyphicon-chevron-up(ng-show='!campaign.isCollapsed')
       div(collapse='campaign.isCollapsed')
-        .well
-          .row
-            .col-sm-12
-              span Imperial player: {{campaign.imperialPlayer.firstName}} {{campaign.imperialPlayer.lastName}}
-          .row
-            .col-md-4(ng-repeat='rebel in campaign.rebelPlayers')
-              span Rebel player: {{rebel.firstName}} {{rebel.lastName}}
-          .row
-            .col-sm-12
-              span Time spent: {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
-          .row
-            .col-sm-12
-              span Winner: {{campaign.winner}}
+        .row
+          .col-sm-4
+            h4 Empire
+            span Player name: {{campaign.imperialPlayer.firstName}} {{campaign.imperialPlayer.lastName}}
+          .col-sm-8
+            h4 Rebel Alliance
+            .row
+              .col-sm-12(ng-repeat='rebel in campaign.rebelPlayers')
+                .row
+                  .col-sm-6 Player name: {{rebel.firstName}} {{rebel.lastName}}
+                  .col-sm-6 Hero: {{rebel.hero}}
+          .col-sm-12
+            span Time spent: {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
+          .col-sm-12
+            span Winner: {{campaign.winner}}
 
 div(ng-include='"components/static/footer.html"')

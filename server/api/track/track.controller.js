@@ -7,19 +7,24 @@ var Track = require('./track.model');
 // Get list of tracks belogns to campaign
 exports.show = function(req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
-  console.log('tracks find by campaign id: ',new ObjectId(req.params.campaign_id));
+  console.info('tracks find by campaign id: ', new ObjectId(req.params.campaign_id));
   Track.find({campaign_id: new ObjectId(req.params.campaign_id)}, function (err, tracks) {
     if(err) { return handleError(res, err); }
     if(!tracks) { return res.send(404); }
+    console.info("tracks for campaign id: " + req.params.campaign_id, tracks);
     return res.json(tracks);
   });
 };
 
 // Creates a new track in the DB.
 exports.create = function(req, res) {
-  console.log('track to create', req.body);
+  console.info('track to create', req.body);
+  if (req.body.playDate === undefined || req.body.playdate === null) {
+    req.body.playDate = new Date();
+  }
   Track.create(req.body, function(err, track) {
     if(err) { return handleError(res, err); }
+    console.info("track created", track);
     return res.json(201, track);
   });
 };

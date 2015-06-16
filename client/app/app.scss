@@ -11,6 +11,8 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 .btn-row{
   margin-top: 15px;
+  margin-left: -($grid-gutter-width / 2);
+  margin-right: -($grid-gutter-width / 2);
 }
 
 .bg, .bg-alt{
@@ -48,11 +50,21 @@ footer{
   z-index: 100;
 }
 
+// Animate
 .ui-view-container.animating{
   overflow: hidden;
 }
 [ui-view]{
   height: 100%;
+}
+
+// typo
+.strong {
+  font-weight: bold;
+}
+
+.underline {
+  border-bottom: 1px solid;
 }
 
 /* Responsive: Portrait tablets and up */

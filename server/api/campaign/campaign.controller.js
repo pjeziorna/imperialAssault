@@ -29,6 +29,9 @@ exports.show = function(req, res) {
 
 // Creates a new campaign in the DB.
 exports.create = function(req, res) {
+  if (req.body.startDate === undefined || req.body.startDate === null) {
+    req.body.startDate = new Date();
+  }
   Campaign.create(req.body, function(err, campaign) {
     if(err) { return handleError(res, err); }
     return res.json(201, campaign);
@@ -37,10 +40,10 @@ exports.create = function(req, res) {
 
 // Updates an existing campaign in the DB.
 exports.update = function(req, res) {
-  console.log(req.body);
+  //console.log(req.body);
   if(req.body._id) { delete req.body._id; }
   Campaign.findById(req.params.id, function (err, campaign) {
-    console.log('campaign update ', campaign);
+    //console.log('campaign update ', campaign);
     if (err) { return handleError(res, err); }
     if(_.intersection(req.body.tracks, campaign.tracks).length !== req.body.tracks.length){
       // update timeSpent according to this in tracks
@@ -56,7 +59,7 @@ exports.update = function(req, res) {
     var updated = _.merge(campaign, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      console.log('campaign updated ', campaign);
+      //console.log('campaign updated ', campaign);
       return res.json(200, campaign);
     });
   });

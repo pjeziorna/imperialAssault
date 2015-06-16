@@ -5,6 +5,27 @@ random-bg(path='../../assets/images')
   h1 {{campaign.name}}
   .row
     .col-sm-12
+      h3 Summary
+    .col-sm-4
+      h4 Empire
+      .row
+        .col-sm-12
+          span Player name: {{campaign.imperialPlayer.firstName}}
+    .col-sm-8
+      h4 Rebel Alliance
+      .row
+        .col-sm-12(ng-repeat='rebel in campaign.rebelPlayers')
+          .row
+            .col-sm-6 Player name: {{rebel.firstName}}
+            .col-sm-6 Hero: {{rebel.hero}}
+    .col-sm-12
+      h5 Total time spent: {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
+    .col-sm-12
+      h5 Started: {{campaign.startDate}}
+
+
+  .row
+    .col-sm-12
       mc-messages
   .row
     .col-md-12
@@ -16,7 +37,11 @@ random-bg(path='../../assets/images')
       div(ng-show='!track.isEdited')
         .row
           .col-sm-9
-            h4.title {{track.mission.title}}
+            //span {{track.mission}}
+            h4.title
+              small(ng-class='{"underline" : track.mission.missionType.indexOf("Story") >= 0, "underline strong" : track.mission.missionType.indexOf("Finale") >= 0}') {{track.mission.missionType}}
+              span.strong  {{track.mission.title}}
+            h6 Played: {{track.playDate}}
           .col-sm-3.text-right
             button.btn.btn-link(ng-click='editTrack(track)')
               h4.glyphicon.glyphicon-edit
@@ -25,17 +50,19 @@ random-bg(path='../../assets/images')
               h4.glyphicon.glyphicon-chevron-up(ng-show='!track.isCollapsed')
         div(collapse='track.isCollapsed')
           .row
-            .col-md-6
+            .col-md-4
               h4 Imperial statistics
               p Influence: {{track.imperialStats.influence}}
-            .col-md-6
+            .col-md-8
               h4 Rebel statistics
               p Credits: {{track.rebelStats.credits}}
               div(ng-repeat='user in track.rebelStats.users')
                 .row
-                  .col-md-6
-                    span Name: {{user.name}}
-                  .col-md-6
+                  .col-md-4
+                    span Player name: {{user.name}}
+                  .col-md-4
+                    span Hero: {{user.hero}}
+                  .col-md-4
                     span Exp: {{user.exp}}
             .col-md-12
               h4 Global statistics
@@ -47,10 +74,8 @@ random-bg(path='../../assets/images')
             label.col-md-3 Mission name
             .col-md-9
               selectize(config='missionsConfig', options='missions', ng-model='track.mission._id')
-              //select(ng-model='track.missionName', ng-options='("deck: " + mission.deckType + "; " + mission.title + "; type: " + mission.type) for mission in missions', class='form-control', required)
-              //input.form-control(type='text', ng-model='track.missionName', required)
           .form-group
-            label.col-md-3 Imperial statistics (influencce)
+            label.col-md-3 Imperial statistics (influence)
             .col-md-9
               input.form-control(type='number', min='0', ng-model='track.imperialStats.influence', required)
           .form-group
@@ -91,8 +116,8 @@ random-bg(path='../../assets/images')
               input.btn.btn-success.btn-block.pull-right(type='submit', value='Save mission')
 
     .btn-row
-      .col-md-12(ng-show='canAdd')
-         button.btn.btn-lg.btn-warning.pull-right(ng-click='addTrack()')
+      .col-md-6.col-md-offset-6(ng-show='canAdd')
+         button.btn.btn-lg.btn-warning.btn-block(ng-click='addTrack()')
            span.glyphicon.glyphicon-plus
            | Add Mission
 

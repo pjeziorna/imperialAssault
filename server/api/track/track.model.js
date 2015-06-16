@@ -5,8 +5,10 @@ var mongoose = require('mongoose'),
 
 var TrackSchema = new Schema({
   mission: {
-    _id: String,
-    title: String
+    _id: {type: String, index: true},
+    title: String,
+    deckType: String,
+    missionType: String
   },
   campaign_id: { type: Schema.Types.ObjectId, index: true},
   imperialStats: {
@@ -22,7 +24,8 @@ var TrackSchema = new Schema({
     hours: Number,
     minutes: Number
   },
-  winner: String
+  winner: String,
+  playDate: {type: Date, default: new Date()}
 });
 
 module.exports = mongoose.model('Track', TrackSchema);

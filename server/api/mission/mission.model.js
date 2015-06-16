@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 var MissionSchema = new Schema({
   _id: String, // short name - enum like MISSION_1
-  type: String,
+  missionType: String,
   title: String,
   rebelVictoryBonus: {
     credits: {type: Number, default: 0},

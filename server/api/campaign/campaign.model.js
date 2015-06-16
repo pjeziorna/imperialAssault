@@ -17,7 +17,8 @@ var CampaignSchema = new Schema({
   timeSpent: {
     hours: { type: Number, default: 0 },
     minutes: { type: Number, default: 0 }
-  }
+  },
+  startDate: {type: Date, default: new Date()}
 });
 
 
