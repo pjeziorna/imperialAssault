@@ -96,9 +96,13 @@ angular.module('imperialAssaultApp')
             $scope.tracks[$scope.tracks.length - 1] = trackSaved;
             $scope.campaign.timeSpent = Ctrl.updateTimeSpent(trackSaved);
             $scope.campaign.tracks.push(trackSaved._id);
-            $http.patch('/api/campaigns/' + campaignId, $scope.campaign).success(function(){
-              messageCenterService.add('success', 'New mission saved', {timeout: 3000});
-            });
+            $http.patch('/api/campaigns/' + campaignId, $scope.campaign)
+              .success(function () {
+                messageCenterService.add('success', 'New mission saved', {timeout: 3000});
+              })
+              .error(function (err, doc) {
+                messageCenterService.add('danger', 'Campaign faied to update', {timeout: 3000});
+              });
           })
           .error(function(err, doc){
             $scope.canAdd = true;
@@ -112,7 +116,19 @@ angular.module('imperialAssaultApp')
             $scope.canAdd = true;
             $scope.editMode = null;
             track.isCollapsed = true;
-            messageCenterService.add('success', 'Mission saved', {timeout: 3000});
+            $http.patch('/api/campaigns/' + campaignId, $scope.campaign)
+              .success(function () {
+                messageCenterService.add('success', 'Mission saved', {timeout: 3000});
+              })
+              .error(function (err, doc) {
+                messageCenterService.add('danger', 'Campaign faied to update', {timeout: 3000});
+              });
+          })
+          .error(function (err, doc) {
+            $scope.canAdd = true;
+            $scope.editMode = null;
+            messageCenterService.add('danger', 'Failed to save mission', {timeout: 3000});
+            console.error(err);
           });
       }
     };

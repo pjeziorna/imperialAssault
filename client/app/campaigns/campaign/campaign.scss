@@ -19,18 +19,18 @@
   background-repeat: no-repeat;
   background-position: 50% 50%;
 
-&.hero{
-  .title{
-    color: lighten($brand-danger, 15);
+  &.hero {
+    h4.title {
+      color: lighten($brand-danger, 15);
+    }
+    background-color: transparentize($brand-danger, 0.85);
+    background-image: url("../assets/images/rebel-bgless.png");
   }
-  background-color: transparentize($brand-danger, 0.85);
-  background-image: url("../assets/images/rebel-bgless.png");
-}
-&.empire{
-  .title{
-    color: lighten($brand-primary, 15);
+  &.empire {
+    h4.title {
+      color: lighten($brand-primary, 15);
+    }
+    background-color: transparentize($brand-primary, 0.85);
+    background-image: url("../assets/images/empire-bgless.png");
   }
-  background-color: transparentize($brand-primary, 0.85);
-  background-image: url("../assets/images/empire-bgless.png");
-}
 }

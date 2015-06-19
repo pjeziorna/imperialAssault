@@ -11,8 +11,8 @@
   }
 
   &:hover,&:focus{
-    background-color: transparentize($highlight,0.15);
-    color:  lighten($color,20); //transparentize(lighten($color,20),0.3);
+    background-color: transparentize(lighten($background, 10), 0.15);
+    color: lighten($color, 40); //transparentize(lighten($color,20),0.3);
     border: 1px solid transparentize(lighten($color,20),0.3 );
   }
 
@@ -88,5 +88,11 @@
     outline-color: $outline-color;
     outline-style: $outline-style;
     outline-width: $outline-width;
+  }
+}
+
+.btn-block {
+  .glyphicon {
+    padding: 0 6px;
   }
 }

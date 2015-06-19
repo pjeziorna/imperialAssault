@@ -36,7 +36,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 
 .container.main{
-  padding-bottom: $footer-height;
+  padding-bottom: $footer-height + 25px;
 }
 
 footer{

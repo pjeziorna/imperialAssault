@@ -11,7 +11,7 @@ random-bg(path='../../assets/images')
       .row
         .col-sm-9
           h4 {{campaign.name}}
-          h6 {{campaign.startDate}}
+          h6 {{campaign.startDate | date : 'dd.MM.yyyy'}}
         .col-sm-3.text-right
           button.btn.btn-link(ng-show='campaign.canEdit', ng-click='editCampaign(campaign)')
             h4.glyphicon.glyphicon-edit

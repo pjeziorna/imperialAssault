@@ -10,18 +10,25 @@ random-bg(path='../../assets/images')
       h4 Empire
       .row
         .col-sm-12
-          span Player name: {{campaign.imperialPlayer.firstName}}
+          span.glyphicon.glyphicon-user.glyphicon-left
+          span {{campaign.imperialPlayer.firstName}}
     .col-sm-8
       h4 Rebel Alliance
       .row
-        .col-sm-12(ng-repeat='rebel in campaign.rebelPlayers')
+        .col-sm-6(ng-repeat='rebel in campaign.rebelPlayers')
           .row
-            .col-sm-6 Player name: {{rebel.firstName}}
-            .col-sm-6 Hero: {{rebel.hero}}
-    .col-sm-12
-      h5 Total time spent: {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
-    .col-sm-12
-      h5 Started: {{campaign.startDate}}
+            .col-sm-12
+              span.glyphicon.glyphicon-user.glyphicon-left
+              span {{rebel.hero}}
+                small  ({{rebel.firstName}})
+    .col-sm-4
+      h5
+        span.glyphicon.glyphicon-time.glyphicon-left
+        span {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
+    .col-sm-4
+      h5
+        span.glyphicon.glyphicon-calendar.glyphicon-left
+        span {{campaign.startDate | date : 'dd.MM.yyyy'}}
 
 
   .row
@@ -41,7 +48,9 @@ random-bg(path='../../assets/images')
             h4.title
               small(ng-class='{"underline" : track.mission.missionType.indexOf("Story") >= 0, "underline strong" : track.mission.missionType.indexOf("Finale") >= 0}') {{track.mission.missionType}}
               span.strong  {{track.mission.title}}
-            h6 Played: {{track.playDate}}
+            h6
+              span.glyphicon.glyphicon-calendar.glyphicon-left
+              span {{track.playDate | date : 'dd.MM.yyyy'}}
           .col-sm-3.text-right
             button.btn.btn-link(ng-click='editTrack(track)')
               h4.glyphicon.glyphicon-edit
@@ -59,15 +68,25 @@ random-bg(path='../../assets/images')
               div(ng-repeat='user in track.rebelStats.users')
                 .row
                   .col-md-4
-                    span Player name: {{user.name}}
+                    span.glyphicon.glyphicon-user.glyphicon-left
+                    span {{user.hero}}
+                      small  ({{user.name}})
                   .col-md-4
-                    span Hero: {{user.hero}}
-                  .col-md-4
-                    span Exp: {{user.exp}}
+                    span.glyphicon.glyphicon-flag.glyphicon-left
+                    span
+                      small exp
+                      |  {{user.exp}}
             .col-md-12
               h4 Global statistics
-              p Time spent: {{track.timeSpent.hours}}h {{track.timeSpent.minutes}}min
-              p Winner: {{track.winner}}
+              .row
+                .col-sm-4
+                  p
+                    span.glyphicon.glyphicon-time.glyphicon-left
+                    span {{track.timeSpent.hours}}h {{track.timeSpent.minutes}}min
+                .col-sm-4
+                  p
+                    span.glyphicon.glyphicon-star.glyphicon-left
+                    span {{track.winner}}
       div(ng-show='track.isEdited')
         form.form-horizontal(name='newTrackForm', ng-submit='newTrackForm.$valid && saveTrack(track)')
           .form-group
@@ -116,7 +135,9 @@ random-bg(path='../../assets/images')
               input.btn.btn-success.btn-block.pull-right(type='submit', value='Save mission')
 
     .btn-row
-      .col-md-6.col-md-offset-6(ng-show='canAdd')
+      .col-md-6(ng-show='!campaign.winner')
+        button.btn.btn-lg.btn-info.btn-block End Campaign
+      .col-md-6(ng-show='canAdd')
          button.btn.btn-lg.btn-warning.btn-block(ng-click='addTrack()')
            span.glyphicon.glyphicon-plus
            | Add Mission
