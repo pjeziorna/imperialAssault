@@ -5,9 +5,16 @@ random-bg(path='../../assets/images')
   .row
     .col-sm-12
       mc-messages
-  button.btn.btn-link(ng-click='backToMainPage()')
-    span.glyphicon.glyphicon-chevron-left
-    | Back to main page
+    .col-sm-6
+      button.btn.btn-link(ng-click='backToMainPage()')
+        span.glyphicon.glyphicon-chevron-left.glyphicon-left
+        | Back to main page
+    .col-sm-6.text-right
+      a.btn.btn-link(ui-sref='my-campaigns')
+        | Go to my campaigns
+        span.glyphicon.glyphicon-chevron-right.glyphicon-right
+
+
   form.form-horizontal(name='newCampaignForm', ng-submit='newCampaignForm.$valid && createCampaign()')
     .form-group
       label.col-sm-1(for='campaignName') Name

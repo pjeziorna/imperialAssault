@@ -1,17 +1,25 @@
 div(ng-include='"components/navbar/navbar.html"')
 random-bg(path='../../assets/images')
 .container.main
+  h1 My campaigns
   .row
-    .col-sm-12
+    .col-sm-6
       button.btn.btn-link(ng-click='backToMainPage()')
-        span.glyphicon.glyphicon-chevron-left
+        span.glyphicon.glyphicon-chevron-left.glyphicon-left
         | Back to main page
+    .col-sm-6.text-right
+      a.btn.btn-link(ui-sref='new-campaign')
+        span.glyphicon.glyphicon-plus.glyphicon-left
+        | Add new campaign
+
   .list-group
-    .list-group-item(ng-repeat='campaign in campaigns')
+    .list-group-item.mission(ng-repeat='campaign in campaigns', ng-class='{"hero" : campaign.winner == "Rebel Alliance" , "empire" : campaign.winner == "Empire" }')
       .row
         .col-sm-9
           h4 {{campaign.name}}
-          h6 {{campaign.startDate | date : 'dd.MM.yyyy'}}
+          h6
+            span.glyphicon.glyphicon-calendar.glyphicon-left
+            span {{campaign.startDate | date : 'dd.MM.yyyy'}}
         .col-sm-3.text-right
           button.btn.btn-link(ng-show='campaign.canEdit', ng-click='editCampaign(campaign)')
             h4.glyphicon.glyphicon-edit
@@ -22,17 +30,20 @@ random-bg(path='../../assets/images')
         .row
           .col-sm-4
             h4 Empire
-            span Player name: {{campaign.imperialPlayer.firstName}} {{campaign.imperialPlayer.lastName}}
+            span.glyphicon.glyphicon-user.glyphicon-left
+            span {{campaign.imperialPlayer.firstName}} {{campaign.imperialPlayer.lastName}}
           .col-sm-8
             h4 Rebel Alliance
             .row
-              .col-sm-12(ng-repeat='rebel in campaign.rebelPlayers')
-                .row
-                  .col-sm-6 Player name: {{rebel.firstName}} {{rebel.lastName}}
-                  .col-sm-6 Hero: {{rebel.hero}}
-          .col-sm-12
-            span Time spent: {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
-          .col-sm-12
-            span Winner: {{campaign.winner}}
+              .col-sm-4(ng-repeat='rebel in campaign.rebelPlayers')
+                span.glyphicon.glyphicon-user.glyphicon-left
+                span {{rebel.hero}}
+                div.small ({{rebel.firstName}} {{rebel.lastName}})
+          .col-sm-4
+            span.glyphicon.glyphicon-time.glyphicon-left
+            span {{campaign.timeSpent.hours}}h {{campaign.timeSpent.minutes}}min
+          .col-sm-4
+            span.glyphicon.glyphicon-star.glyphicon-left
+            span {{campaign.winner | emptyPlaceholder}}
 
 div(ng-include='"components/static/footer.html"')

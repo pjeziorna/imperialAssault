@@ -157,6 +157,10 @@ angular.module('imperialAssaultApp')
       $scope.editMode = "edit";
     };
 
+    $scope.endCampaign = function () {
+      $state.transitionTo('end-campaign', {campaignId: $scope.campaign._id}, {inherit: false});
+    };
+
     this.sortTracks = function(tracks){
       if($scope.campaign !== null){
         var campaignTracks = $scope.campaign.tracks;

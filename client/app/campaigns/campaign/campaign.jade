@@ -29,6 +29,11 @@ random-bg(path='../../assets/images')
       h5
         span.glyphicon.glyphicon-calendar.glyphicon-left
         span {{campaign.startDate | date : 'dd.MM.yyyy'}}
+    .col-sm-4
+      h5
+        span.glyphicon.glyphicon-star.glyphicon-left
+        span {{campaign.winner | emptyPlaceholder }}
+
 
 
   .row
@@ -37,7 +42,7 @@ random-bg(path='../../assets/images')
   .row
     .col-md-12
       button.btn.btn-link(ng-click='backToCampaignList()')
-        span.glyphicon.glyphicon-chevron-left
+        span.glyphicon.glyphicon-chevron-left.glyphicon-left
         | Back to campains' list
   .list-group
     .list-group-item.mission(ng-repeat='track in tracks', ng-class='{"hero" : track.winner == "Rebel Alliance" , "empire" : track.winner == "Empire" }')
@@ -52,7 +57,7 @@ random-bg(path='../../assets/images')
               span.glyphicon.glyphicon-calendar.glyphicon-left
               span {{track.playDate | date : 'dd.MM.yyyy'}}
           .col-sm-3.text-right
-            button.btn.btn-link(ng-click='editTrack(track)')
+            button.btn.btn-link(ng-show='!campaign.winner', ng-click='editTrack(track)')
               h4.glyphicon.glyphicon-edit
             button.btn.btn-link(ng-click='track.isCollapsed = !track.isCollapsed')
               h4.glyphicon.glyphicon-chevron-down(ng-show='track.isCollapsed')
@@ -134,9 +139,9 @@ random-bg(path='../../assets/images')
             .col-md-6
               input.btn.btn-success.btn-block.pull-right(type='submit', value='Save mission')
 
-    .btn-row
-      .col-md-6(ng-show='!campaign.winner')
-        button.btn.btn-lg.btn-info.btn-block End Campaign
+    .btn-row(ng-show='!campaign.winner')
+      .col-md-6
+        button.btn.btn-lg.btn-info.btn-block(ng-click='endCampaign()') End Campaign
       .col-md-6(ng-show='canAdd')
          button.btn.btn-lg.btn-warning.btn-block(ng-click='addTrack()')
            span.glyphicon.glyphicon-plus

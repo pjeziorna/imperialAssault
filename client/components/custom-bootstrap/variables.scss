@@ -54,7 +54,7 @@ $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 
-$font-size-base:          20px !default;
+$font-size-base: 16px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -326,7 +326,7 @@ $container-lg:                 $container-large-desktop !default;
 //##
 
 // Basics of a navbar
-$navbar-height:                    80px !default;
+$navbar-height: 50px !default;
 $navbar-margin-bottom:             0px !default; //$line-height-computed !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
@@ -900,7 +900,7 @@ $selectize-caret-margin: 0 2px 0 0 !default;
 $selectize-caret-margin-rtl: 0 4px 0 -2px !default;
 
 /** CUSTOM VARIABLES **/
-$footer-height:               60px !default;
+$footer-height: 40px !default;
 $footer-bg:                   transparentize(#171717, 0.4) !default;
 $footer-border-color:         #76735d !default;
 
