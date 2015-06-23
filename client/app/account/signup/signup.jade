@@ -26,11 +26,11 @@ random-bg(path='../../assets/images')
       .col-sm-12
       form.form(name='form', ng-submit='login(form)', novalidate='')
         .row
-          .col-md-6
+          .col-sm-6
             .form-group
               label(for='login') Login
               input.form-control(id='login', type='text', name='login', ng-model='user.login')
-          .col-md-6
+          .col-sm-6
             .form-group
               label(for='passwd') Password
               input.form-control(id='passwd', type='password', name='password', ng-model='user.password')
@@ -41,10 +41,11 @@ random-bg(path='../../assets/images')
           p.help-block {{ errors.other }}
 
         .row
-          .col-md-6
-            a.btn.btn-default.btn-block(ui-sref='login')
-              | Login
-          .col-md-6
-            button.btn.btn-success.btn-block(type='submit')
-              | Sign up
-  hr
+          .col-sm-6
+            .form-group
+              a.btn.btn-info.btn-block(ui-sref='login')
+                | Login
+          .col-sm-6
+            .form-group
+              button.btn.btn-warning.btn-block(type='submit')
+                | Sign up

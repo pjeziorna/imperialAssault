@@ -14,29 +14,30 @@ random-bg(path='../../assets/images')
         | Go to my campaigns
         span.glyphicon.glyphicon-chevron-right.glyphicon-right
 
-
-  form.form-horizontal(name='newCampaignForm', ng-submit='newCampaignForm.$valid && createCampaign()')
-    .form-group
-      label.col-sm-1(for='campaignName') Name
-      .col-sm-5
-        input.form-control(id='campaignName', ng-model='campaign.name', required)
-      label.col-sm-1(for='imperialPlayer') Imperial player
-      .col-sm-5
-        input.form-control.typeahead(id='imperialPlayer', ng-model='campaign.imperialPlayer', required, typeahead='player as (player.firstName + " " + player.lastName) for player in getUsers($viewValue)')
-    .form-group(ng-repeat='rebelPlayer in rebelPlayersCount')
-      label.col-sm-1(for='rebelPlayer{{$index}}') Rebel player
-      .col-sm-5
-        input.form-control(id='rebelPlayer{{$index}}', ng-model='campaign.rebelPlayers[$index]', required, typeahead='player as (player.firstName + " " + player.lastName) for player in getUsers($viewValue)')
-      label.col-sm-1(for='rebelPlayerHero{{$index}}') Hero
-      .col-sm-5
-        selectize(id='rebelPlayerHero{{$index}}', config='herosConfig', options='heros', ng-model='campaign.rebelHeros[$index]')
-        //input.form-control(id='rebelPlayerHero{{$index}}', ng-model='campaign.rebelPlayers[$index].hero', required, typeahead='player as (player.firstName + " " + player.lastName) for player in getUsers($viewValue)')
+  .col-sm-12
+    form.form.form-horizontal(name='newCampaignForm', ng-submit='newCampaignForm.$valid && createCampaign()')
+      .form-group
+        label.col-sm-1(for='campaignName') Name
+        .col-sm-5
+          input.form-control(id='campaignName', ng-model='campaign.name', required)
+        label.col-sm-1(for='imperialPlayer') Imperial player
+        .col-sm-5
+          input.form-control.typeahead(id='imperialPlayer', ng-model='campaign.imperialPlayer', required, typeahead='player as (player.firstName + " " + player.lastName) for player in getUsers($viewValue)')
+      .form-group(ng-repeat='rebelPlayer in rebelPlayersCount')
+        label.col-sm-1(for='rebelPlayer{{$index}}') Rebel player
+        .col-sm-5
+          input.form-control(id='rebelPlayer{{$index}}', ng-model='campaign.rebelPlayers[$index]', required, typeahead='player as (player.firstName + " " + player.lastName) for player in getUsers($viewValue)')
+        label.col-sm-1(for='rebelPlayerHero{{$index}}') Hero
+        .col-sm-5
+          selectize(id='rebelPlayerHero{{$index}}', config='herosConfig', options='heros', ng-model='campaign.rebelHeros[$index]')
 
     .row
-      .col-md-6
-        button.btn.btn-default.btn-block(ng-click='addRebelPlayer()') add rebel player
-      .col-md-6
-        input.btn.btn-success.btn-block(type='submit', value='Add new campaign')
+      .col-sm-6
+        .form-group
+          button.btn.btn-info.btn-block(ng-click='addRebelPlayer()') add rebel player
+      .col-sm-6
+        .form-group
+          input.btn.btn-warning.btn-block(type='submit', value='Add new campaign')
 
 div(ng-include='"components/static/footer.html"')
 

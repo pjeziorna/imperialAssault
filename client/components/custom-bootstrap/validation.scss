@@ -1,0 +1,21 @@
+.ng-invalid.ng-touched {
+  border-color: $brand-danger;
+  @include box-shadow(0 0 8px lighten($brand-danger, 10));
+
+  &:focus, &:active {
+    border-color: $brand-warning;
+    @include box-shadow(0 0 8px $brand-warning);
+  }
+}
+
+.selectize-input {
+  &.ng-invalid.ng-touched, &.ng-dirty.not-full {
+    border-color: $brand-danger;
+    @include box-shadow(0 0 8px lighten($brand-danger, 10));
+
+    &:focus, &:active, &.input-active {
+      border-color: $brand-warning;
+      @include box-shadow(0 0 8px $brand-warning);
+    }
+  }
+}

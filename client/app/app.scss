@@ -25,10 +25,10 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
   overflow: hidden;
 
   img{
-    width: 100%;
-    min-height: 100%;
+    position: relative;;
   }
 }
+
 *:focus, *:active:focus{
   outline-color: $outline-color;
   outline-style: solid;
@@ -94,6 +94,12 @@ footer{
     .container {
         max-width: 1200px;
     }
+}
+
+@media screen and (max-width: 767px) {
+  #main .btns-wrapper {
+    width: 96%;
+  }
 }
 
 // Component styles are injected through grunt

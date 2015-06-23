@@ -64,15 +64,38 @@ angular.module('imperialAssaultApp', [
     $rootScope.$on('animEnd', function($event, element, speed) {
       $(element).removeClass('animating');
       $('.ui-view-container').removeClass('animating');
+      var img = $('#main .bg img');
+      countBgSize(img);
     });
 
     $('.anim-in-out').height(window.innerHeight + "px");
 
     angular.element($window).bind('resize', function(){
       $('.anim-in-out').height(window.innerHeight + "px");
+      var img = $('#main').find('.bg img');
+      countBgSize(img);
     });
 
     // initialaze all factories/services
     HerosFactory.getAllHeros();
     MissionFactory.getAllMissions();
   });
+
+function countBgSize(img) {
+  var imgW = img.width();
+  var imgH = img.height();
+  var imgRatio = imgW / imgH;
+
+  var winW = window.innerWidth;
+  var winH = window.innerHeight;
+  var winRatio = winW / winH;
+
+  if (winRatio >= imgRatio) {
+    img.width(winW);
+    img.height(winW / imgRatio);
+  } else {
+    img.width(winH * imgRatio);
+    img.height(winH);
+    img.css('left', (winW / 2) - (img.width() / 2) + "px");
+  }
+}

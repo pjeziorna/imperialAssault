@@ -16,4 +16,21 @@
     position:absolute;
     bottom: 10%;
   }
+
+  .navbar-nav {
+    margin-top: 0;
+    font-size: $font-size-h4;
+    float: right;
+
+    li {
+      display: inline-block;
+      & > a {
+        color: $text-color;
+        &:focus, &:hover {
+          color: transparentize(lighten($brand-primary, 65), 0.45);
+          background-color: transparentize($brand-primary, 0.45);
+        }
+      }
+    }
+  }
 }
