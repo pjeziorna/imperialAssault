@@ -30,8 +30,8 @@
   }
 
   .navbar-nav {
-    font-size: 25px;
-    line-height: 28px;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
     > li > a {
       color: $navbar-default-link-color;
 

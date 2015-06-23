@@ -121,7 +121,7 @@ angular.module('imperialAssaultApp')
                 messageCenterService.add('success', 'Mission saved', {timeout: 3000});
               })
               .error(function (err, doc) {
-                messageCenterService.add('danger', 'Campaign faied to update', {timeout: 3000});
+                messageCenterService.add('danger', 'Campaign failed to update', {timeout: 3000});
               });
           })
           .error(function (err, doc) {

@@ -40,11 +40,18 @@ exports.create = function(req, res) {
 
 // Updates an existing campaign in the DB.
 exports.update = function(req, res) {
-  //console.log(req.body);
+  console.log(req.body);
   if(req.body._id) { delete req.body._id; }
+  if (req.body.__v) {
+    delete req.body.__v;
+  }
   Campaign.findById(req.params.id, function (err, campaign) {
+    console.log('campaign', campaign);
     //console.log('campaign update ', campaign);
-    if (err) { return handleError(res, err); }
+    if (err) {
+      console.log('error', err);
+      return handleError(res, err);
+    }
     if(_.intersection(req.body.tracks, campaign.tracks).length !== req.body.tracks.length){
       // update timeSpent according to this in tracks
       //campaign.timeSpent = updateTimeSpent(req.body.tracks);
@@ -58,7 +65,10 @@ exports.update = function(req, res) {
     if(!campaign) { return res.send(404); }
     var updated = _.merge(campaign, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) {
+        console.log('error', err);
+        return handleError(res, err);
+      }
       //console.log('campaign updated ', campaign);
       return res.json(200, campaign);
     });

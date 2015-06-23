@@ -28,9 +28,11 @@ angular.module('imperialAssaultApp')
       $http.put('/api/campaigns/' + campaignId, $scope.campaign)
         .success(function (err, doc) {
           console.log('Campaign ended');
+          $state.transitionTo('campaign', {campaignId: campaignId}, {inherit: false});
         })
         .error(function (err, doc) {
           console.error(err);
+          $state.transitionTo('campaign', {campaignId: campaignId}, {inherit: false});
         });
     };
 

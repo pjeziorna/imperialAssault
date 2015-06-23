@@ -4,8 +4,12 @@ random-bg(path='../../assets/images')
 .container.main
   h1 {{campaign.name}}
   .row
-    .col-sm-12
+    .col-sm-4
       h3 Summary
+    .col-sm-8
+      ul.progress-container
+        li.progress.circle(ng-repeat='track in tracks', ng-class='{"hero" : track.winner == "Rebel Alliance" , "empire" : track.winner == "Empire" }')
+          span.progress-inner {{$index + 1}}
     .col-sm-4
       h4 Empire
       .row
@@ -49,7 +53,6 @@ random-bg(path='../../assets/images')
       div(ng-show='!track.isEdited')
         .row
           .col-sm-9
-            //span {{track.mission}}
             h4.title
               small(ng-class='{"underline" : track.mission.missionType.indexOf("Story") >= 0, "underline strong" : track.mission.missionType.indexOf("Finale") >= 0}') {{track.mission.missionType}}
               span.strong  {{track.mission.title}}

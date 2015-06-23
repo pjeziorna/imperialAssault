@@ -1,0 +1,16 @@
+@mixin keyframesBg($name, $bgColor) {
+  @keyframes #{$name} {
+    0% {
+      background-color: $bgColor;
+    }
+    25% {
+      background-color: darken($bgColor, 12);
+    }
+    55% {
+      background-color: darken($bgColor, 12);
+    }
+    100% {
+      background-color: $bgColor;
+    }
+  }
+}

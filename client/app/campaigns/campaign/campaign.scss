@@ -14,4 +14,94 @@
   }
 }
 
+$progressInnerSize: 30px;
+$progressOuterSize: $progressInnerSize + 10px;
+$pulseSize: 2px;
+$progressMargin: 10px;
 
+@keyframes pulse {
+  0% {
+    width: $progressOuterSize;
+    height: $progressOuterSize;
+    margin: 0 $progressMargin;
+    line-height: $progressOuterSize;
+  }
+  25% {
+    width: $progressOuterSize + $pulseSize;
+    height: $progressOuterSize + $pulseSize;
+    margin: (-($pulseSize / 2)) ($progressMargin - ($pulseSize / 2));
+    line-height: $progressOuterSize + $pulseSize;
+    @include border-bottom-radius(($progressOuterSize + $pulseSize) / 2);
+    @include border-top-radius(($progressOuterSize + $pulseSize) / 2);
+  }
+  55% {
+    width: $progressOuterSize + $pulseSize;
+    height: $progressOuterSize + $pulseSize;
+    margin: (-($pulseSize / 2)) ($progressMargin - ($pulseSize / 2));
+    line-height: $progressOuterSize + $pulseSize;
+    @include border-bottom-radius(($progressOuterSize + $pulseSize) / 2);
+    @include border-top-radius(($progressOuterSize + $pulseSize) / 2);
+  }
+  100% {
+    width: $progressOuterSize;
+    height: $progressOuterSize;
+    margin: 0 $progressMargin;
+    line-height: $progressOuterSize;
+  }
+}
+
+@include keyframesBg(pulseInnerHero, lighten($brand-danger, 5));
+@include keyframesBg(pulseInnerEmpire, lighten($brand-primary, 5));
+
+.progress-container {
+  margin: 22px 0 0 (-($progressMargin));
+  padding: 0;
+  height: $progressOuterSize + $pulseSize;
+}
+
+.progress {
+  width: $progressOuterSize;
+  height: $progressOuterSize;
+  display: inline-block;
+  content: "";
+  text-align: center;
+  line-height: $progressOuterSize;
+  @include animation(pulse 0.4s infinite);
+  @include animation-timing-function(ease-in-out);
+
+  .progress-inner {
+    margin: 5px;
+    width: $progressInnerSize;
+    height: $progressInnerSize;
+    content: "";
+    display: inline-block;
+    line-height: $progressInnerSize;
+  }
+
+  &.circle {
+    @include border-bottom-radius(($progressOuterSize) / 2);
+    @include border-top-radius(($progressOuterSize) / 2);
+    .progress-inner {
+      @include border-bottom-radius(($progressInnerSize) / 2);
+      @include border-top-radius(($progressInnerSize) / 2);
+    }
+  }
+
+  &.hero {
+    background-color: transparentize($brand-danger, 0.65);
+    .progress-inner {
+      background-color: lighten($brand-danger, 5);
+    }
+  }
+
+  &.empire {
+    background-color: transparentize($brand-primary, 0.65);
+    .progress-inner {
+      background-color: lighten($brand-primary, 5);
+    }
+  }
+
+  & + .progress {
+    margin-left: $progressMargin;
+  }
+}
