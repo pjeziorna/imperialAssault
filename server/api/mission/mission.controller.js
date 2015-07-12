@@ -7,7 +7,7 @@ var Mission = require('./mission.model');
 exports.index = function(req, res) {
   Mission.find(function (err, missions) {
     if(err) { return handleError(res, err); }
-    return res.json(200, missions);
+    return res.status(200).json(missions);
   });
 };
 

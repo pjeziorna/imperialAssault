@@ -7,7 +7,7 @@ var Hero = require('./hero.model');
 exports.index = function(req, res) {
   Hero.find(function (err, heros) {
     if(err) { return handleError(res, err); }
-    return res.json(200, heros);
+    return res.status(200).json(heros);
   });
 };
 

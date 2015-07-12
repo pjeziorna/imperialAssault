@@ -338,7 +338,7 @@ var mock = [{
   "deckType" : "hero"
 }, {
   "_id" : "OLD_FRIENDS",
-  "missionType": "Hero - G_ideon Argus",
+  "missionType": "Hero - Gideon Argus",
     "title" : "Old Friends",
     "rebelVictoryBonus" : {
     "exp":0,

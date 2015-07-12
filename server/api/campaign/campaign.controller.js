@@ -13,7 +13,7 @@ exports.mineCampaigns = function(req, res) {
     'rebelPlayers._id': req.user._id
   }]}, function (err, campaigns) {
     if(err) { return handleError(res, err); }
-    return res.json(200, campaigns);
+    return res.status(200).json(campaigns);
   });
 };
 

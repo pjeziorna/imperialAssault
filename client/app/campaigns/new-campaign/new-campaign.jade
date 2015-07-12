@@ -31,12 +31,10 @@ random-bg(path='../../assets/images')
         .col-sm-5
           selectize(id='rebelPlayerHero{{$index}}', config='herosConfig', options='heros', ng-model='campaign.rebelHeros[$index]')
 
-    .row
-      .col-sm-6
-        .form-group
+      .row
+        .col-sm-6
           button.btn.btn-info.btn-block(ng-click='addRebelPlayer()') add rebel player
-      .col-sm-6
-        .form-group
+        .col-sm-6
           input.btn.btn-warning.btn-block(type='submit', value='Add new campaign')
 
 div(ng-include='"components/static/footer.html"')

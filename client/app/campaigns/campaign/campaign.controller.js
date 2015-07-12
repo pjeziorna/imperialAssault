@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('imperialAssaultApp')
-  .controller('CampaignCtrl', function ($scope, $state, $stateParams, $http, $timeout, Winners, messageCenterService, MissionFactory) {
+  .controller('CampaignCtrl', function ($scope, $state, $stateParams, $http, $timeout, Winners, User, messageCenterService, MissionFactory) {
     $scope.randBg = (Math.floor(Math.random() * 4) + 1);
     $scope.campaign = null;
     $scope.tracks = [];
@@ -62,6 +62,7 @@ angular.module('imperialAssaultApp')
 
     var Ctrl = this;
     var campaignId = $stateParams.campaignId;
+    var currentUser = User.get();
 
     if(campaignId === null){
       $state.transitionTo('my-campaigns');
@@ -69,6 +70,7 @@ angular.module('imperialAssaultApp')
       $timeout( function() {
         $http.get('/api/campaigns/' + campaignId).success(function (campaign) {
           $scope.campaign = campaign;
+          $scope.campaign.canEdit = ($scope.campaign.owner === currentUser._id) ? true : false;
         });
 
         $http.get('/api/tracks/' + campaignId).success(function (tracks) {
@@ -184,7 +186,8 @@ angular.module('imperialAssaultApp')
         },
         campaign_id: campaignId,
         imperialStats: {
-          influence: null
+          influence: null,
+          exp: null
         },
         rebelStats: {
           credits: null,

@@ -37,6 +37,7 @@ angular.module('imperialAssaultApp')
     }
 
     $scope.createCampaign = function(){
+      console.log('create new campaign');
       var campaign = {
         owner: Auth.getCurrentUser()._id,
         name: $scope.campaign.name,

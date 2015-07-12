@@ -15,14 +15,14 @@ random-bg(path='../../assets/images')
   .list-group
     .list-group-item.mission(ng-repeat='campaign in campaigns', ng-class='{"hero" : campaign.winner == "Rebel Alliance" , "empire" : campaign.winner == "Empire" }')
       .row
-        .col-sm-9
+        .col-xs-9
           h4 {{campaign.name}}
           h6
             span.glyphicon.glyphicon-calendar.glyphicon-left
             span {{campaign.startDate | date : 'dd.MM.yyyy'}}
-        .col-sm-3.text-right
-          button.btn.btn-link(ng-show='campaign.canEdit', ng-click='editCampaign(campaign)')
-            h4.glyphicon.glyphicon-edit
+        .col-xs-3.text-right
+          button.btn.btn-link(ng-click='editCampaign(campaign)')
+            h4.glyphicon.glyphicon-eye-open
           button.btn.btn-link(ng-click='campaign.isCollapsed = !campaign.isCollapsed')
             h4.glyphicon.glyphicon-chevron-down(ng-show='campaign.isCollapsed')
             h4.glyphicon.glyphicon-chevron-up(ng-show='!campaign.isCollapsed')
@@ -35,7 +35,7 @@ random-bg(path='../../assets/images')
           .col-sm-8
             h4 Rebel Alliance
             .row
-              .col-sm-4(ng-repeat='rebel in campaign.rebelPlayers')
+              .col-sm-4.col-xs-6(ng-repeat='rebel in campaign.rebelPlayers')
                 span.glyphicon.glyphicon-user.glyphicon-left
                 span {{rebel.hero}}
                 div.small ({{rebel.firstName}} {{rebel.lastName}})

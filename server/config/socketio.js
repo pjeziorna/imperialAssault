@@ -18,6 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/agenda/agenda.socket').register(socket);
   require('../api/hero/hero.socket').register(socket);
   require('../api/track/track.socket').register(socket);
   require('../api/mission/mission.socket').register(socket);

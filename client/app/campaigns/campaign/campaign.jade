@@ -60,7 +60,7 @@ random-bg(path='../../assets/images')
               span.glyphicon.glyphicon-calendar.glyphicon-left
               span {{track.playDate | date : 'dd.MM.yyyy'}}
           .col-sm-3.text-right
-            button.btn.btn-link(ng-show='!campaign.winner', ng-click='editTrack(track)')
+            button.btn.btn-link(ng-show='campaign.canEdit && !campaign.winner', ng-click='editTrack(track)')
               h4.glyphicon.glyphicon-edit
             button.btn.btn-link(ng-click='track.isCollapsed = !track.isCollapsed')
               h4.glyphicon.glyphicon-chevron-down(ng-show='track.isCollapsed')
@@ -70,6 +70,7 @@ random-bg(path='../../assets/images')
             .col-md-4
               h4 Imperial statistics
               p Influence: {{track.imperialStats.influence}}
+              p Exp: {{track.imperialStats.exp}}
             .col-md-8
               h4 Rebel statistics
               p Credits: {{track.rebelStats.credits}}
@@ -103,8 +104,11 @@ random-bg(path='../../assets/images')
               selectize(config='missionsConfig', options='missions', ng-model='track.mission._id')
           .form-group
             label.col-md-3 Imperial statistics (influence)
-            .col-md-9
+            .col-md-4
               input.form-control(type='number', min='0', ng-model='track.imperialStats.influence', required)
+            label.col-md-1 exp
+            .col-md-4
+              input.form-control(type='number', min='0', ng-model='track.imperialStats.exp', required)
           .form-group
             label.col-md-3 Rebel statistics (credits)
             .col-md-9
@@ -142,7 +146,7 @@ random-bg(path='../../assets/images')
             .col-md-6
               input.btn.btn-success.btn-block.pull-right(type='submit', value='Save mission')
 
-    .btn-row(ng-show='!campaign.winner')
+    .btn-row(ng-show='campaign.canEdit && !campaign.winner')
       .col-md-6
         button.btn.btn-lg.btn-info.btn-block(ng-click='endCampaign()') End Campaign
       .col-md-6(ng-show='canAdd')
